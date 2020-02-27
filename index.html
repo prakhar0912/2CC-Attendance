@@ -62,24 +62,12 @@
         .logo {
             position: relative;
             width: fit-content;
-            padding-top: 10px;
-            padding-left: 20px;
-            display: grid;
-            grid-template-columns: auto auto;
-            justify-items: center;
-            align-items: center;
-            column-gap: 2vw;
+            margin-top: 20px;
+            margin-left: 20px;
         }
 
         .logo>img {
             height: 3.5vh;
-        }
-
-        .logo>h4 {
-            width: fit-content;
-            transform: translateY(-5px);
-            -webkit-transform: translateY(-5px);
-            -moz-transform: translateY(-5px);
         }
 
         @media (max-width: 900px) {
@@ -91,18 +79,13 @@
             }
 
             .logo {
-                column-gap: 5vw;
+                margin-bottom: 40px;
             }
-
+            .input{
+                padding-top: 5vh;
+            }
             .logo>img {
                 height: 2.2vh;
-            }
-
-            .logo>h4 {
-                font-size: 1.4rem;
-                transform: translateY(-3px);
-                -webkit-transform: translateY(-3px);
-                -moz-transform: translateY(-3px);
             }
         }
     </style>
@@ -111,9 +94,8 @@
 <body>
     <div class="logo">
         <img src="./assets/dsc-logo.svg" alt="">
-        <h4 style="color: #26a69a">DSC 2CC Attendance</h4>
     </div>
-
+    <h4 style="color: #26a69a; text-align: center;">DSC 2CC Attendance</h4>
     <div class="input">
         <div class="input-field col s12">
             <input id="RegNo" type="text" class="" placeholder="Your Registration Number">
