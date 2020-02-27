@@ -78,15 +78,11 @@
                 justify-items: center;
 
             }
-
             .logo {
                 margin-bottom: 40px;
             }
             .input{
                 padding-top: 5vh;
-            }
-            .logo>img {
-                height: 2.2vh;
             }
         }
     </style>
@@ -96,7 +92,7 @@
     <div class="logo">
         <img src="./assets/dsc-logo.svg" alt="">
     </div>
-    <h4 style="color: #26a69a; text-align: center;">DSC 2CC Attendance</h4>
+    <h4 style="color: #26a69a; text-align: center;" class="heading">DSC 2CC Attendance</h4>
     <div class="input">
         <div class="input-field col s12">
             <input id="RegNo" type="text" class="" placeholder="Your Registration Number">
@@ -161,6 +157,7 @@
     </div>
     <script src="./assets/data.js"></script>
     <script>
+        if(window.innerWidth < 900) document.querySelector(".heading").style.height = window.innerHeight*0.035;
         let rows = document.querySelectorAll(".data");
         const CheckBtn = document.querySelector(".check");
         const message = document.querySelector(".message");
