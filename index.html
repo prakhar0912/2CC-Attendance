@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        body {
+            position: relative;
+            height: fit-content;
+            min-height: 100vh;
+
+        }
+
+        .input {
+            position: relative;
+            margin: 0;
+            padding: 0 10%;
+            padding-top: 10vh;
+            width: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+        }
+
+        .input>button {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+        }
+
+        .deets {
+            position: relative;
+            padding: 0 10%;
+            margin-bottom: 100px;
+        }
+
+        .info1 {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            text-align: center;
+            column-gap: 3vw;
+            margin-bottom: 100px;
+        }
+        .table{
+            position: relative;
+            overflow: hidden;
+        }
+        .display-none{
+            display: none;
+        }
+        @media (max-width: 900px){
+            .info1{
+                grid-template-columns: none;
+                grid-template-rows: repeat(3, auto);
+                justify-items: center;
+                
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input">
+        <div class="input-field col s12">
+            <input id="RegNo" type="text" class="">
+            <label for="text">Reg No</label>
+        </div>
+        <button class="btn waves-effect waves-light check" type="submit" name="action">Submit</button>
+    </div>
+    <h2 class="message display-none flow-text" style = "text-align: center; color: red;">
+        Registration Number not found!
+    </h2>
+    <div class="deets">
+        <h1 class="flow-text" style="color: #26a69a;">Details</h1>
+        <div class="info">
+            <div class="info1">
+                <h2 class="flow-text name">Name:</h1>
+                <h2 class="flow-text sessions">Attended Sessions:</h1>
+                <h2 class="flow-text percent">Percentage:</h1>
+            </div>
+            <div class="table">
+                <table class="highlight responsive-table centered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data">
+                            
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                        </tr>
+                        <tr class="data">
+                            
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <script src="./assets/data.js"></script>
+    <script>
+        let rows = document.querySelectorAll(".data");
+        const CheckBtn = document.querySelector(".check");
+        const message = document.querySelector(".message");
+        console.log(data[0])
+        let dates = ["8/14/2019","9/20/2019","9/4/2019","12/18/2019","12/1/2020","29/01/2020","5/2/2020","19/02/2020"];
+        CheckBtn.addEventListener("click", () => {
+            rows.forEach(ele=>{
+                ele.innerHTML = "";
+            })
+            let regNoInput = document.querySelector("#RegNo");
+            let regNo = regNoInput.value;
+            let name = document.querySelector(".name");
+            let sessions = document.querySelector(".sessions");
+            let percent = document.querySelector(".percent");
+            name.innerHTML = "Name: ";
+            sessions.innerHTML = "Sessions Attended: ";
+            percent.innerHTML = "Percentage: ";
+            let i = 0;
+            data.forEach(element => {
+                if(element["Register No"] === regNo){
+                    message.style.display = "none";
+                    name.innerHTML = "Name: "+element["Name"];
+                    sessions.innerHTML = "Sessions Attended: "+ element["Attended Sessions"];
+                    percent.innerHTML = "Percentage: "+element["Percentage"]+"%";
+                    i = 0;
+                    rows.forEach(ele=>{
+                        let td1 = document.createElement("td");
+                        td1.innerHTML = dates[i];
+                        let td2 = document.createElement("td");
+                        if(element[dates[i]] == undefined){
+                          td2.innerHTML = "Absent";
+                          td2.style.color = "Red";
+                        }
+                        else{                
+                            td2.innerHTML = element[dates[i]];
+                            td2.style.color = "#26a69a";
+                        }
+                        ele.appendChild(td1);
+                        ele.appendChild(td2);
+                        i++; 
+                    })
+                }
+            });
+            if(i == 0){
+                message.style.display = "block";
+            }
+        })
+    </script>
+</body>
+
+</html>
